@@ -1,0 +1,156 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:           #e2e6ef;
+  --btn-bg:       #eaedf5;
+  --shadow-light: rgba(255, 255, 255, 0.92);
+  --shadow-dark:  rgba(163, 177, 198, 0.65);
+  --icon-idle:    #b8c0ce;
+  --size:         64px;
+
+  /* brand */
+  --fb: #1877F2;
+  --tw: #1DA1F2;
+  --ig: #E1306C;
+  --li: #0A66C2;
+  --gh: #24292e;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── BAR ── */
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* ── BASE BUTTON ── */
+.btn {
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--btn-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--icon-idle);
+  position: relative;
+  outline: none;
+
+  /* convex shadow */
+  box-shadow:
+    6px 6px 14px var(--shadow-dark),
+    -6px -6px 14px var(--shadow-light);
+
+  transition:
+    color      0.25s ease,
+    box-shadow 0.25s ease,
+    transform  0.18s ease;
+
+  /* ring via outline – transparent by default */
+  outline: 2.5px solid transparent;
+  outline-offset: 3px;
+}
+
+.btn svg {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── HOVER ── */
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    8px 10px 18px var(--shadow-dark),
+    -6px -6px 14px var(--shadow-light);
+}
+.btn:hover svg { transform: scale(1.15); }
+
+/* hover brand color */
+.btn.fb:hover { color: var(--fb); }
+.btn.tw:hover { color: var(--tw); }
+.btn.ig:hover { color: var(--ig); }
+.btn.li:hover { color: var(--li); }
+.btn.gh:hover { color: var(--gh); }
+
+/* ── PRESS ── */
+.btn:active {
+  transform: scale(0.92);
+  box-shadow:
+    inset 4px 4px 10px var(--shadow-dark),
+    inset -4px -4px 10px var(--shadow-light);
+}
+
+/* ────────────────────────
+   ACTIVE via radio:checked
+──────────────────────── */
+
+/* Facebook active */
+#s1:checked ~ .bar .fb {
+  color: var(--fb);
+  outline-color: var(--fb);
+  box-shadow:
+    inset 4px 4px 10px var(--shadow-dark),
+    inset -4px -4px 10px var(--shadow-light);
+}
+
+/* Twitter active */
+#s2:checked ~ .bar .tw {
+  color: var(--tw);
+  outline-color: var(--tw);
+  box-shadow:
+    inset 4px 4px 10px var(--shadow-dark),
+    inset -4px -4px 10px var(--shadow-light);
+}
+
+/* Instagram active */
+#s3:checked ~ .bar .ig {
+  color: var(--ig);
+  outline-color: var(--ig);
+  box-shadow:
+    inset 4px 4px 10px var(--shadow-dark),
+    inset -4px -4px 10px var(--shadow-light);
+}
+
+/* LinkedIn active */
+#s4:checked ~ .bar .li {
+  color: var(--li);
+  outline-color: var(--li);
+  box-shadow:
+    inset 4px 4px 10px var(--shadow-dark),
+    inset -4px -4px 10px var(--shadow-light);
+}
+
+/* GitHub active */
+#s5:checked ~ .bar .gh {
+  color: var(--gh);
+  outline-color: var(--gh);
+  box-shadow:
+    inset 4px 4px 10px var(--shadow-dark),
+    inset -4px -4px 10px var(--shadow-light);
+}
+
+/* ── Staggered entry ── */
+.btn { animation: pop .5s cubic-bezier(.22,1,.36,1) both; }
+.btn:nth-child(1) { animation-delay: .05s; }
+.btn:nth-child(2) { animation-delay: .12s; }
+.btn:nth-child(3) { animation-delay: .19s; }
+.btn:nth-child(4) { animation-delay: .26s; }
+.btn:nth-child(5) { animation-delay: .33s; }
+
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.7) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
